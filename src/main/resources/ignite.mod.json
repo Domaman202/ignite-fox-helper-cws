@@ -1,0 +1,7 @@
+{
+  "id": "IgniteFoxHelperCWS",
+  "version": "1.0.0",
+  "mixins": [
+    "mixins.ignite-fox-helper-cws.core.json"
+  ]
+}
