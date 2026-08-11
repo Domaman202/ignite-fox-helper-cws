@@ -6,6 +6,10 @@
   "target": "@env(DEFAULT)",
   "compatibilityLevel": "JAVA_21",
   "server": [
+    "BukkitMixin",
     "MixinSimpleCommandMap"
+  ],
+  "mixins": [
+    "ServerBuildInfoImplMixin"
   ]
 }

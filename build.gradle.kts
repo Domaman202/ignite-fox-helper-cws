@@ -13,4 +13,5 @@ dependencies {
 
   compileOnly(files("libs/folia.jar"))
   compileOnly(files("libs/ignite.jar"))
+  compileOnly(files("libs/FoX-CWS-1.0.0.jar"))
 }
