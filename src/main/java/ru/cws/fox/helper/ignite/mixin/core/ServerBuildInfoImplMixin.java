@@ -1,6 +1,8 @@
 package ru.cws.fox.helper.ignite.mixin.core;
 
 import io.papermc.paper.ServerBuildInfoImpl;
+import net.fabricmc.loader.api.VersionParsingException;
+import net.fabricmc.loader.impl.util.version.VersionParser;
 import net.kyori.adventure.key.Key;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
@@ -34,9 +36,9 @@ public class ServerBuildInfoImplMixin {
    * @reason Z
    */
   @Inject(method = "<init>(Lnet/kyori/adventure/key/Key;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/util/OptionalInt;Ljava/time/Instant;Ljava/util/Optional;Ljava/util/Optional;)V", at = @At("RETURN"))
-  public void ctor(Key brandId, String brandName, String minecraftVersionId, String minecraftVersionName, OptionalInt buildNumber, Instant buildTime, Optional gitBranch, Optional gitCommit, CallbackInfo ci) {
+  public void ctor(Key brandId, String brandName, String minecraftVersionId, String minecraftVersionName, OptionalInt buildNumber, Instant buildTime, Optional gitBranch, Optional gitCommit, CallbackInfo ci) throws VersionParsingException {
     this.brandId = Key.key("fox");
     this.brandName = "FoX";
-    this.buildNumber = OptionalInt.of(Fox.VERSION.replace(".", "000").hashCode());
+    this.buildNumber = OptionalInt.of(VersionParser.parse(Fox.VERSION, false).hashCode());
   }
 }
